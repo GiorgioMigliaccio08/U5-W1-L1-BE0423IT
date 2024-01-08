@@ -1,10 +1,8 @@
 package U5W1L1.demo.entities;
 
-import java.util.List;
-
 public class Menu {
 
-    private List<Ingredient> menuItems;
+    private final String menuItems;
 
 
     public Menu(String menuItems) {
@@ -12,7 +10,7 @@ public class Menu {
     }
 
 
-    public List<Ingredient> getMenuItems() {
+    public String getMenuItems() {
         return menuItems;
     }
 
