@@ -1,28 +1,34 @@
 package U5W1L1.demo.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
+
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Menu {
+    private List<Pizza> pizzaList;
+    private List<Drink> drinkList;
+    private List<Topping> toppingList;
 
-    private final String menuItems;
+    public void printMenu() {
+        System.out.println("******* Menu *******");
+        System.out.println("PIZZAS");
+        this.pizzaList.forEach(System.out::println);
+        System.out.println();
 
+        System.out.println("TOPPINGS");
+        this.toppingList.forEach(System.out::println);
+        System.out.println();
 
-    public Menu(String menuItems) {
-        this.menuItems = menuItems;
-    }
+        System.out.println("DRINKS");
+        this.drinkList.forEach(System.out::println);
+        System.out.println();
 
-
-    public String getMenuItems() {
-        return menuItems;
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder menuDescription = new StringBuilder("Menu:\n");
-
-        for (Ingredient menuItem : menuItems) {
-            menuDescription.append(menuItem.toString()).append("\n");
-        }
-
-        return menuDescription.toString();
     }
 }
