@@ -1,36 +1,56 @@
 package U5W1L1.demo.entities;
 
-import java.util.ArrayList;
+import lombok.Getter;
+
 import java.util.List;
 
-public class Pizza extends Ingredient {
+@Getter
+public class Pizza extends Item {
+    private String name;
 
-    private List<Topping> toppings;
+    private List<Topping> toppingList;
+    private boolean isXl = false;
 
-    // Costruttore per una pizza base
-    public Pizza(String name, double price, int calories) {
-        super(name, price, calories);
-        this.toppings = new ArrayList<>();
+    public Pizza(String name, List<Topping> toppingList, boolean isXl) {
+        super(1012, 4.3);
+        this.name = name;
+        this.toppingList = toppingList;
+        this.isXl = isXl;
+        this.calories = setCalories(toppingList, isXl);
+        this.price = setPrice(toppingList, isXl);
     }
 
-    // Aggiungi un topping alla pizza
-    public void addTopping(Topping topping) {
-        toppings.add(topping);
+    public int setCalories(List<Topping> toppingList, boolean isXl) {
+        int tot = 1012;
+        if (toppingList != null) {
+            for (int i = 0; i < toppingList.size(); i++) {
+                tot += toppingList.get(i).getCalories();
+            }
+        }
+        if (isXl) return (tot += (tot * 5) / 100);
+        else return tot;
     }
 
-    // Metodo toString per una rappresentazione testuale della pizza
+    public double setPrice(List<Topping> t, boolean isXl) {
+        double tot = 4.30;
+        if (t != null) {
+            for (int i = 0; i < t.size(); i++) {
+                tot += t.get(i).getPrice();
+            }
+        }
+
+        if (isXl) return tot += (tot * 10) / 100;
+        else return tot;
+    }
+
     @Override
     public String toString() {
-        StringBuilder pizzaDescription = new StringBuilder(super.toString() + " - Toppings: ");
-        if (toppings.isEmpty()) {
-            pizzaDescription.append("None");
-        } else {
-            for (Topping topping : toppings) {
-                pizzaDescription.append(topping.getName()).append(", ");
-            }
-            // Rimuovi l'ultima virgola e spazio
-            pizzaDescription.delete(pizzaDescription.length() - 2, pizzaDescription.length());
-        }
-        return pizzaDescription.toString();
+        return "Pizza{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", price=" + price +
+                ", toppingList=" + toppingList +
+                ", isXl=" + isXl +
+                '}';
     }
 }
