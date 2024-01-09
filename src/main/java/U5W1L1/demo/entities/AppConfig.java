@@ -1,76 +1,113 @@
 package U5W1L1.demo.entities;
+
+package com.epicode.U5D1.entities;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.awt.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 public class AppConfig {
-
-    // Bean per una pizza Margherita
-    @Bean
-    public Pizza margherita() {
-        return new Pizza("Pizza Margherita", 4.99, 1104);
+    @Bean(name = "toppings_tomato")
+    public Topping toppingTomatoBean() {
+        return new Topping("Tomato", 0, 0);
     }
 
-    // Bean per una pizza Hawaiian
-    @Bean
-    public Pizza hawaiianPizza() {
-        Topping ham = new Topping("Ham", 0.99, 35);
-        Topping pineapple = new Topping("Pineapple", 0.69, 22);
-
-        Pizza hawaiian = new Pizza("Hawaiian Pizza", 6.49, 1024);
-        hawaiian.addTopping(ham);
-        hawaiian.addTopping(pineapple);
-
-        return hawaiian;
+    @Bean(name = "toppings_cheese")
+    public Topping toppingCheeseBean() {
+        return new Topping("Cheese", 92, 0.69);
     }
 
-    // Bean per un topping Cheese
-    @Bean
-    public Topping cheese() {
-        return new Topping("Cheese", 0.69, 24);
+    @Bean(name = "toppings_ham")
+    public Topping toppingHamBean() {
+        return new Topping("Ham", 35, 0.99);
     }
 
-    // Bean per un topping Salami
-    @Bean
-    public Topping salami() {
-        return new Topping("Salami", 0.79, 86);
+    @Bean(name = "toppings_pineapple")
+    public Topping toppingPineappleBean() {
+        return new Topping("Pineapple", 24, 0.79);
     }
 
-    // Bean per una bevanda Lemonade
-    @Bean
-    public Beverage lemonade() {
-        return new Beverage("Lemonade", 1.29, 128, 0.331);
+    @Bean(name = "toppings_salami")
+    public Topping toppingSalamiBean() {
+        return new Topping("Salami", 86, 0.99);
     }
 
-    // Bean per una bevanda Water
-    @Bean
-    public Beverage water() {
-        return new Beverage("Water", 0.69, 0, 0.5);
+
+    @Bean(name = "pizza_margherita")
+    public Pizza pizzaMargheritaBean() {
+        List<Topping> tList = new ArrayList<>();
+        tList.add(toppingTomatoBean());
+        tList.add(toppingCheeseBean());
+        return new Pizza("Pizza Margherita", tList, false);
     }
 
-    // Bean per una bevanda Wine
-    @Bean
-    public Beverage wine() {
-        return new Beverage("Wine", 7.49, 607, 0.751);
+    @Bean(name = "hawaiian_pizza")
+    public Pizza pizzaHawaiianBean() {
+        List<Topping> tList = new ArrayList<>();
+        tList.add(toppingTomatoBean());
+        tList.add(toppingCheeseBean());
+        tList.add(toppingHamBean());
+        tList.add(toppingPineappleBean());
+        return new Pizza("Hawaiian Pizza", tList, false);
     }
 
-    // Bean per il menù
-    @Bean
-    public Menu menu() {
-        List<Ingredient> menuItems = Arrays.asList(
-                margherita(),
-                hawaiianPizza(),
-                cheese(),
-                salami(),
-                lemonade(),
-                water(),
-                wine()
-        );
+    @Bean(name = "salami_pizza")
+    public Pizza pizzaSalamiBean() {
+        List<Topping> tList = new ArrayList<>();
+        tList.add(toppingTomatoBean());
+        tList.add(toppingCheeseBean());
+        tList.add(toppingSalamiBean());
+        return new Pizza("Salami Pizza", tList, false);
+    }
 
-        return new Menu(menuItems.toString());
+    @Bean(name = "salami_pizza_xl")
+    public Pizza pizzaSalamiXlBean() {
+        List<Topping> tList = new ArrayList<>();
+        tList.add(toppingTomatoBean());
+        tList.add(toppingCheeseBean());
+        tList.add(toppingSalamiBean());
+        return new Pizza("Salami Pizza XL", tList, true);
+    }
+
+    @Bean(name = "lemonade")
+    public Drink lemonadeBean() {
+        return new Drink("Lemonade", 128, 1.29);
+    }
+
+    @Bean(name = "water")
+    public Drink waterBean() {
+        return new Drink("Water", 0, 1.29);
+    }
+
+    @Bean(name = "wine")
+    public Drink wineBean() {
+        return new Drink("Wine", 607, 7.49);
+    }
+
+    @Bean(name = "menu")
+    public Menu menuBean() {
+        List<Pizza> pizzaList = new ArrayList<>();
+        List<Drink> drinkList = new ArrayList<>();
+        List<Topping> toppingsList = new ArrayList<>();
+
+        pizzaList.add(pizzaMargheritaBean());
+        pizzaList.add(pizzaHawaiianBean());
+        pizzaList.add(pizzaSalamiBean());
+        pizzaList.add(pizzaSalamiXlBean());
+
+        drinkList.add(lemonadeBean());
+        drinkList.add(waterBean());
+        drinkList.add(wineBean());
+
+        toppingsList.add(toppingTomatoBean());
+        toppingsList.add(toppingCheeseBean());
+        toppingsList.add(toppingSalamiBean());
+        toppingsList.add(toppingHamBean());
+        toppingsList.add(toppingPineappleBean());
+
+        return new Menu(pizzaList, drinkList, toppingsList);
     }
 }
