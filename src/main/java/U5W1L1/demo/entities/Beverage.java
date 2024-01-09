@@ -1,23 +1,24 @@
 package U5W1L1.demo.entities;
 
-public class Beverage extends Ingredient {
+import lombok.Getter;
+import lombok.Setter;
 
-    private double volume;
+@Getter
+@Setter
+public class Drink extends Item {
+    private String name;
 
-
-    public Beverage(String name, double price, int calories, double volume) {
-        super(name, price, calories);
-        this.volume = volume;
+    public Drink(String name, int calories, double price) {
+        super(calories, price);
+        this.name = name;
     }
-
-
-    public double getVolume() {
-        return volume;
-    }
-
 
     @Override
     public String toString() {
-        return super.toString() + " - Volume: " + volume + "l";
+        return "Drink{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", price=" + price +
+                '}';
     }
 }
