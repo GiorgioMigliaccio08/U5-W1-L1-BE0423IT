@@ -1,11 +1,25 @@
 package U5W1L1.demo.entities;
 
-public class Topping extends Ingredient {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 
-    public Topping(String name, double price, int calories) {
-        super(name, price, calories);
+public class Topping extends Item {
+    private String name;
+
+    public Topping(String name, int calories, double price) {
+        super(calories, price);
+        this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Topping{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", price=" + price +
+                '}';
+    }
 }
