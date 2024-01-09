@@ -1,31 +1,25 @@
 package U5W1L1.demo;
 
-import U5W1L1.demo.entities.AppConfig;
+import com.epicode.U5D1.entities.Menu;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.awt.*;
-
 @SpringBootApplication
-public class DemoApplication {
+@Slf4j
+public class U5D1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(U5D1Application.class, args);
+
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(U5D1Application.class);
+
+		Menu m = (Menu) ctx.getBean("menu");
+
+		m.printMenu();
+		ctx.close();
 	}
 
-	public class Main {
-
-		public static void main(String[] args) {
-
-			ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
-
-			Menu menu = context.getBean(Menu.class);
-
-
-			System.out.println(menu);
-		}
-	}
+}}
 }
