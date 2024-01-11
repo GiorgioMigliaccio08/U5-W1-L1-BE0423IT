@@ -43,6 +43,30 @@ public class Pizza extends Item {
         else return tot;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Topping> getToppingList() {
+        return toppingList;
+    }
+
+    public void setToppingList(List<Topping> toppingList) {
+        this.toppingList = toppingList;
+    }
+
+    public boolean isXl() {
+        return isXl;
+    }
+
+    public void setXl(boolean xl) {
+        isXl = xl;
+    }
+
     @Override
     public String toString() {
         return "Pizza{" +
