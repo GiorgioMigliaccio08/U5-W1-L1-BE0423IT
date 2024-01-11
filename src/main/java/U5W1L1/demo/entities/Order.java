@@ -25,6 +25,54 @@ public class Order {
         this.table = table;
     }
 
+    public int getNumeroOrdine() {
+        return numeroOrdine;
+    }
+
+    public void setNumeroOrdine(int numeroOrdine) {
+        this.numeroOrdine = numeroOrdine;
+    }
+
+    public List<Item> getOrderedProducts() {
+        return orderedProducts;
+    }
+
+    public LocalTime getOraAcquisizione() {
+        return oraAcquisizione;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public int getNumCoperti() {
+        return numCoperti;
+    }
+
+    public void setNumCoperti(int numCoperti) {
+        this.numCoperti = numCoperti;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void setOraAcquisizione(LocalTime oraAcquisizione) {
+        this.oraAcquisizione = oraAcquisizione;
+    }
+
+    public void setOrderedProducts(List<Item> orderedProducts) {
+        this.orderedProducts = orderedProducts;
+    }
+
     public void addItem(Item item) {
         this.orderedProducts.add(item);
     }
